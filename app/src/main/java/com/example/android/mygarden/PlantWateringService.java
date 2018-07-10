@@ -36,14 +36,18 @@ import static com.example.android.mygarden.provider.PlantContract.PATH_PLANTS;
 public class PlantWateringService extends IntentService {
 
     public static final String ACTION_WATER_PLANTS = "com.example.android.mygarden.action.water_plants";
+    public static final String ACTION_UPDATE_PLANT_WIDGETS = "com.example.android.mygarden.action.update_plant_widgets";
+
     // TODO (3): Create a new action ACTION_UPDATE_PLANT_WIDGETS to handle updating widget UI and
     // implement handleActionUpdatePlantWidgets to query the plant closest to dying and call
     // updatePlantWidgets to refresh widgets
 
 
+
     public PlantWateringService() {
         super("PlantWateringService");
     }
+
 
     /**
      * Starts this service to perform WaterPlants action with the given parameters. If
@@ -54,6 +58,12 @@ public class PlantWateringService extends IntentService {
     public static void startActionWaterPlants(Context context) {
         Intent intent = new Intent(context, PlantWateringService.class);
         intent.setAction(ACTION_WATER_PLANTS);
+        context.startService(intent);
+    }
+
+    public static void startActionUpdatePlantWidgets(Context context){
+        Intent intent = new Intent(context, PlantWateringService.class);
+        intent.setAction(ACTION_UPDATE_PLANT_WIDGETS);
         context.startService(intent);
     }
 
